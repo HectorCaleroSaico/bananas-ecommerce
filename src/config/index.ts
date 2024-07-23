@@ -1,0 +1,1 @@
+export * as font from './fonts';
