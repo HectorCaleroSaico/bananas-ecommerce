@@ -2,13 +2,15 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { useUIStore } from '@/store'
+import clsx from 'clsx'
 import { HiOutlineHeart, HiOutlineMagnifyingGlass, HiOutlineShoppingCart } from 'react-icons/hi2'
 
 export const TopMenu = () => {
 
     const openMenu = useUIStore(state => state.openSideMenu)
-    //https://d13xymm0hzzbsd.cloudfront.net/landing_new/logotipo.svg
+    const path = usePathname()
 
     return (
 
@@ -66,7 +68,16 @@ export const TopMenu = () => {
                 </div>
             </div>
 
-            <nav className='grid grid-cols-4 sm:flex items-center gap-2 mt-4'>
+            <nav 
+                className={
+                    clsx(
+                        'grid grid-cols-4 sm:flex sm:items-center gap-2 mt-4',
+                        { 
+                            'hidden': !(path === '/')
+                        }
+                    )
+                }
+            >
                 <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/men'>
                     <span className='text-xs font-medium text-center'>Hombres</span>
                 </Link>

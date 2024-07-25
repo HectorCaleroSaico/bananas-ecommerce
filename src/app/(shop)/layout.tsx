@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '../globals.css'
 import { Sidebar, TopMenu } from '@/components/ui'
+import { HiHeart } from 'react-icons/hi2'
 
 export const metadata: Metadata = {
     title: 'Compra en línea, envíos a todo el Perú. | Platanitos',
@@ -16,6 +17,11 @@ export default function ShopLayout({ children }: Readonly<{ children: React.Reac
                 <Sidebar/>
             </header>
             { children }
+            <footer className='py-8 flex flex-row justify-center space-x-2 bg-muted w-full'>
+                <span className='text-xs font-medium'>Hecho con</span>
+                <HiHeart className='w-5 h-5 text-primary'/>
+                <span className='text-xs font-medium'>por platanitos</span>
+            </footer>
         </main>
 
     )
