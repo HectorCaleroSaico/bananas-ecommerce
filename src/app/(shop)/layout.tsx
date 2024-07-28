@@ -1,19 +1,22 @@
 import type { Metadata } from 'next'
-import '../globals.css'
+import { getJsonContent } from '@/actions'
 import { Sidebar, TopMenu } from '@/components/ui'
 import { HiHeart } from 'react-icons/hi2'
+import '../globals.css'
 
 export const metadata: Metadata = {
-    title: 'Compra en línea, envíos a todo el Perú. | Platanitos',
-    description: 'Variedad en marcas de zapatos, ropa, accesorios, belleza, cuidado personal, hogar, bebidas, alimentos, libros y más. Envíos a todo el Perú. Call center 24/7.'
+    title: '2 Compra en línea, envíos a todo el Perú. | Platanitos',
+    description: '2 Variedad en marcas de zapatos, ropa, accesorios, belleza, cuidado personal, hogar, bebidas, alimentos, libros y más. Envíos a todo el Perú. Call center 24/7.'
 }
 
-export default function ShopLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function ShopLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
+    const categories = await getJsonContent('categories')
 
     return (
         <main className='min-h-screen'>
             <header>
-                <TopMenu/>
+                <TopMenu categories={ categories }/>
                 <Sidebar/>
             </header>
             { children }

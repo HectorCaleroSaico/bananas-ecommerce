@@ -3,11 +3,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { Category } from '@/interfaces'
 import { useUIStore } from '@/store'
 import clsx from 'clsx'
 import { HiOutlineHeart, HiOutlineMagnifyingGlass, HiOutlineShoppingCart } from 'react-icons/hi2'
 
-export const TopMenu = () => {
+interface Props {
+    categories: Category[]
+}
+
+export const TopMenu = ({ categories }: Props) => {
 
     const openMenu = useUIStore(state => state.openSideMenu)
     const path = usePathname()
@@ -78,27 +83,19 @@ export const TopMenu = () => {
                     )
                 }
             >
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/men'>
-                    <span className='text-xs font-medium text-center'>Hombres</span>
-                </Link>
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/women'>
-                    <span className='text-xs font-medium text-center'>Mujeres</span>
-                </Link>
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/kid'>
-                    <span className='text-xs font-medium text-center'>Niñas</span>
-                </Link>
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/kid'>
-                    <span className='text-xs font-medium text-center'>Niños</span>
-                </Link>
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/kid'>
-                    <span className='text-xs font-medium text-center'>Hogar</span>
-                </Link>
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/kid'>
-                    <span className='text-xs font-medium text-center'>Ofertas</span>
-                </Link>
-                <Link className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100' href='/category/kid'>
-                    <span className='text-xs font-medium text-center'>Novedades</span>
-                </Link>
+                {
+                    categories && (
+                        categories.map(category => 
+                            <Link 
+                                key={ category.id } 
+                                href={ category.route }
+                                className='p-6 bg-gray-100 hover:bg-gray-200 flex flex-row justify-center sm:bg-white sm:p-2 sm:py-1.5 rounded-md transition-all sm:hover:bg-gray-100'
+                            >
+                                <span className='text-xs font-medium text-center'>{ category.description }</span>
+                            </Link>
+                        )
+                    )
+                }
             </nav>
 
         </header>
