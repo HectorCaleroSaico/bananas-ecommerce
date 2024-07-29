@@ -7,12 +7,11 @@ export const getJsonContent = async (jsonObject: string) => {
     try {
         
         const response = await fetch(`${jsonURL}/${jsonObject}`, {
-            method: 'GET'
+            method: 'GET',
+            cache: 'no-store'
         })
 
         const data = await response.json()
-
-        console.log('Data: ', data)
 
         return data
 

@@ -79,17 +79,3 @@
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
 }
-
-#aside-menu {
-  display: grid;
-  grid-template-areas: 
-    'header'
-    'nav'
-    'footer';
-  grid-template-rows: auto 1fr auto;
-}
-
-body{
-  min-height: 100vh;
-  min-width: 320px;
-}
