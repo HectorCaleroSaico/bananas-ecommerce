@@ -15,10 +15,11 @@ export const SecondaryBanners = ({ banners }: Props) => {
 
     return (
 
-        <article className={ `${responsiveClass} sm:flex sm:flex-row w-full gap-4` }>
+        <div className={ `${responsiveClass} md:flex md:flex-row w-full gap-4` }>
             {
                 banners && banners.map(banner => (
                     <Link
+                        key={ banner.img }
                         href={ banner.path }
                     >
                         <Image 
@@ -27,11 +28,12 @@ export const SecondaryBanners = ({ banners }: Props) => {
                            className='rounded-lg'
                            width={ banner.width }
                            height={ banner.height }
+                           unoptimized
                         />
                     </Link>
                 ))
             }
-        </article>
+        </div>
 
     )
 

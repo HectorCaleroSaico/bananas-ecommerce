@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import { domains } from '@/config'
 import { BandBanner } from '@/interfaces'
 import Image from 'next/image'
@@ -9,14 +12,30 @@ interface Props {
 
 export const BandBanners = ({ banners }: Props) => {
 
-    const sendBanner = banners.find(banner => banner.id === 'send')
-    const restBanners: BandBanner[] = banners.reduce((accumulator: BandBanner[], banner: BandBanner) => {
+    const [sendBanner, setSendBanner] = useState<BandBanner>()
+    const [restBanners, setRestBanners] = useState<BandBanner[]>([])
 
-        if (banner.id === 'send') return accumulator
+    useEffect(() => {
 
-        accumulator.push(banner)
+        if (banners) {
 
-        return accumulator
+            const findBanner = banners.find(banner => banner.id === 'send')
+
+            setSendBanner(findBanner)
+
+            const reduceBanners: BandBanner[] = banners.reduce((accumulator: BandBanner[], banner: BandBanner) => {
+
+                if (banner.id === 'send') return accumulator
+        
+                accumulator.push(banner)
+        
+                return accumulator
+        
+            }, [])
+
+            setRestBanners(reduceBanners)
+
+        }
 
     }, [])
 

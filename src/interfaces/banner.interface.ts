@@ -39,6 +39,7 @@ export interface Content {
 
 // secondary-banners
 export interface SecondaryBanner {
+    id:       string
     title:    string
     subTitle: string
     nodo:     string

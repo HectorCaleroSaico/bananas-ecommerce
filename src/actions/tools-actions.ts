@@ -1,12 +1,15 @@
 'use server'
 
-export const getJsonContent = async (jsonObject: string) => {
+export const getJsonContent = async (jsonObject: string, params: any = null) => {
 
-    const jsonURL = 'http://localhost:3001'
+    const jsonURL = `http://localhost:3001/${jsonObject}`
+    const url = new URL(jsonURL)
+    const paramsSearch = new URLSearchParams(params)
+    url.search = paramsSearch.toString()
 
     try {
         
-        const response = await fetch(`${jsonURL}/${jsonObject}`, {
+        const response = await fetch(url.toString(), {
             method: 'GET',
             cache: 'no-store'
         })

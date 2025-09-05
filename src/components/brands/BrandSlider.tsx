@@ -1,13 +1,12 @@
 'use client'
 
-import { ProductSliderItem } from './ProductSliderItem'
-import { BreakPointCount, ItemSlider } from '@/interfaces'
 import Link from 'next/link'
 import { useSlider } from '@/hooks'
+import { Brand, BreakPointCount } from '@/interfaces'
+import { BrandSliderItem } from './BrandSliderItem'
 
 interface Props {
-    products: ItemSlider[],
-    pathBanner: string
+    brands: Brand[]
 }
 
 const breakPointsCount: BreakPointCount = {
@@ -17,14 +16,12 @@ const breakPointsCount: BreakPointCount = {
     default: 6
 };
 
-export const ProductSlider = ({ products, pathBanner }: Props) => {
-
-    const newProducts = products.slice(0, 11)
+export const BrandSlider = ({ brands }: Props) => {
 
     const { countItems, currentSlide, nextSlide } = useSlider(breakPointsCount)
 
     return (
-
+        
         <section className='w-full relative overflow-hidden space-y-2'>
             <div 
                 className='flex flex-row w-full transition-transform ease-out duration-700 scroll-smooth snap-x snap-mandatory'
@@ -33,14 +30,14 @@ export const ProductSlider = ({ products, pathBanner }: Props) => {
                 }}
             >
                 {
-                    newProducts.map(product => <ProductSliderItem key={ product.alias } product={ product } />)
+                    brands.map(brand => <BrandSliderItem key={ brand.alias } brand={ brand }/>)
                 }
                 <article
-                    className='w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 shrink-0 grow-0 flex flex-col items-center justify-center overflow-hidden py-4 px-2 rounded-lg'
+                    className='w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 h-[350px] shrink-0 grow-0 flex flex-col items-center justify-center overflow-hidden py-4 px-2 rounded-lg'
                 >
                     <Link
-                        href={ pathBanner }
-                        className='w-full h-full  bg-muted hover:bg-gray-200 flex items-center justify-center rounded-lg transition-all'
+                        href='/brands'
+                        className='w-full h-full bg-muted hover:bg-gray-200 flex items-center justify-center rounded-lg transition-all'
                     >
                        <span className='text-xs font-medium text-center'>Ver más</span>
                     </Link>

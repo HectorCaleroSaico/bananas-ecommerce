@@ -36,7 +36,7 @@ export const MainBanners = ({ banners, autoSlide = false, autoSliteInterval = 40
 
         <section className='w-full relative overflow-hidden space-y-3 py-6 rounded-lg'>
             <figure 
-                className='flex flex-row w-full transition-transform ease-out duration-700 scroll-smooth snap-x snap-mandatory'
+                className='flex flex-row w-full transition-transform ease-out duration-700 scroll-smooth snap-x snap-mandatory rounded-lg'
                 style={{
                     transform: `translateX(-${currentSlide*100}%)`
                 }}

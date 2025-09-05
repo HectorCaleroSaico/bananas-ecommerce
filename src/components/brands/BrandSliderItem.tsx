@@ -1,34 +1,40 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ItemSlider } from '@/interfaces'
-import { Badge } from '@/components/ui/badge'
+import { Brand } from '@/interfaces'
+import { domains } from '@/config'
 
 interface Props {
-    product: ItemSlider
+    brand: Brand
 }
 
-export const ProductSliderItem = ({ product }: Props) => {
+export const BrandSliderItem = ({ brand }: Props) => {
 
     return (
-
-        <article className='w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 shrink-0 grow-0 flex flex-col items-center overflow-hidden px-2 py-4'>
+        
+        <article className='w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 h-[350px] shrink-0 grow-0 flex flex-col items-center overflow-hidden px-2 py-4'>
             <Link
-                href={ `/product/${product.alias}` }
-                className='w-full h-full bg-muted py-3 px-3 flex justify-center items-center rounded-tr-lg rounded-tl-lg'
+                href={ `/brand/${brand.alias}` }
+                className='w-full h-full bg-muted hover:bg-gray-200 flex justify-center items-center rounded-lg transition-all'
             >
                 <Image
-                    src={ product.image }
-                    alt={ product.alias }
-                    className='rounded-tr-lg rounded-tl-lg'
-                    width={ 200 }
-                    height={ 200 }
+                    src={ `${domains.cdn}/${brand.img}` }
+                    alt={ brand.alias }
+                    width={ 100 }
+                    height={ 100 }
                     style={{ width: 'auto', height: 'auto' }}
                 />
             </Link>
-            <main className='w-full flex flex-col justify-between px-4 pb-4 bg-muted rounded-br-lg rounded-bl-lg space-y-2'>
+        </article>
+
+    )
+
+}
+
+/*
+<main className='w-full flex flex-col justify-between px-4 pb-4 bg-muted rounded-br-lg rounded-bl-lg space-y-2'>
                 <div className='w-full flex flex-row justify-between'>
                     <Badge className='rounded-2xl'>Nuevo</Badge>
-                    <Badge className='rounded-2xl' variant='destructive'>-45%</Badge>
+                    <Badge className='rounded-2xl bg-destructive'>-45%</Badge>
                 </div>
                 <Link 
                     href={ `/products/${product.alias}` }
@@ -42,8 +48,4 @@ export const ProductSliderItem = ({ product }: Props) => {
                     <span className='text-xs font-normal line-through'>S/ { parseFloat(product.price).toFixed(2) }</span>
                 </p>
             </main>
-        </article>
-
-    )
-
-}
+            */

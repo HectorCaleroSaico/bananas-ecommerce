@@ -1,3 +1,5 @@
 export * from './banner.interface'
 export * from './category.interface'
 export * from './product.interface'
+export * from './comment.interface'
+export * from './ui.interface'
